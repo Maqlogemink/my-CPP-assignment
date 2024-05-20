@@ -102,11 +102,17 @@ public:
             cout <<Nama_karyawan.at(indeks) <<" sudah pensiun " <<'\n';
         }
     }    
-    //virtual void Get_data_karyawan(){
-      //  cout <<"Nama : " << Nama_karyawan << endl;
-        //cout<<"Umur : " << Umur_karyawan << endl; 
-        //cout<<"Jabatan : " <<Jabatan << endl; 
-    //}
+
+    void Find_data_karyawan(string __find){
+
+        auto it = find(Nama_karyawan.begin(),Nama_karyawan.end(),__find);
+        size_t indeks = distance(Nama_karyawan.begin(),it);
+        if(it != Nama_karyawan.end()){
+            cout << Nama_karyawan.at(indeks) << " Berada dirumah sakit " << Nama_rumah_sakit << " Berumur "
+            << Umur_karyawan.at(indeks) << endl;
+        }
+
+    }
         
         
         
@@ -126,6 +132,7 @@ int main(){
     pegawai_awal_bros.input_data_karyawan(pegawai_awal_bros);
     pegawai_awal_bros.hapus_data_karyawan("Agus");
     pegawai_awal_bros.Get_stat_karyawan();
+    pegawai_awal_bros.Find_data_karyawan("Hadi");
 
     return 0;
 }
