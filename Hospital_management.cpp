@@ -5,6 +5,7 @@
 #include <vector> 
 #include <algorithm> 
 #include <string>
+#include <cstring>
 using namespace std;
 
 class Rumah_Sakit{
@@ -118,6 +119,80 @@ public:
         
         
 };
+
+class Pasien : public Rumah_Sakit{
+
+    protected : 
+        vector <string> Nama_Pasien;
+        vector <unsigned int> Umur_Pasien;
+        vector <char> Jenis_Kelamin;
+        vector <string> Riwayat_Medis;
+        vector <Pasien> Data_Pasien;
+        
+    public :
+
+        Pasien(string _nama, string _alamat, vector <string> &nama, vector <unsigned int> &umur, vector <char> &gender, vector <string> &riwayat)
+        : Rumah_Sakit(_nama,_alamat), Nama_Pasien(nama), Umur_Pasien(umur), Jenis_Kelamin(gender), Riwayat_Medis(riwayat)
+        {
+
+           
+
+        }
+
+        vector <string> get_nama_pasien() const{
+            return Nama_Pasien;
+        }
+        vector <unsigned int> get_umur_pasien() const{
+            return Umur_Pasien;
+        }
+        vector <char> get_gender_pasien() const{
+            return Jenis_Kelamin;
+        }
+        vector <string> get_riwayat_pasien() const{
+            return Riwayat_Medis;
+        }
+
+        void input_data_pasien(Pasien data_pasien){
+        
+            Data_Pasien.push_back(data_pasien);
+        
+        }
+
+        void Find_data_pasien(string __find){
+
+        auto it = find(Nama_Pasien.begin(),Nama_Pasien.end(),__find);
+        size_t indeks = distance(Nama_Pasien.begin(),it);
+        if(it != Nama_Pasien.end()){
+            cout <<" Nama : " << Nama_Pasien.at(indeks) 
+            << " \n Berada dirumah sakit : " << Nama_rumah_sakit
+            << " \n Berumur :" << Umur_Pasien.at(indeks) 
+            <<"\n Riwayat Medis : "<< Riwayat_Medis.at(indeks) 
+            <<"\n Jenis Kelamin : "<< Jenis_Kelamin.at(indeks) << endl;
+            }
+        }
+
+        void Rawat_inap(string __find){
+          auto it = find(Nama_Pasien.begin(),Nama_Pasien.end(),__find);
+          size_t indeks = distance(Nama_Pasien.begin(),it);
+
+          if(it != Nama_Pasien.end()){
+            if(Umur_Pasien.at(indeks) > 55 && (Riwayat_Medis.at(indeks) == "Stroke" || Riwayat_Medis.at(indeks) == "Diabetes")){
+                cout <<Nama_Pasien.at(indeks) <<" Wajib menginap " << endl;
+            }
+            if(Riwayat_Medis.at(indeks) == "Kecelakaan"){
+                cout <<Nama_Pasien.at(indeks) <<" Wajib menginap " << endl;
+
+          }
+        }
+    }
+
+    
+    
+
+
+
+
+};
     
     
 
@@ -133,6 +208,22 @@ int main(){
     pegawai_awal_bros.hapus_data_karyawan("Agus");
     pegawai_awal_bros.Get_stat_karyawan();
     pegawai_awal_bros.Find_data_karyawan("Hadi");
+
+
+    vector <string> nama_pasien = {"Bagas","Danu","Tania"};
+    vector <unsigned int> umur_pasien = {19,65,37};
+    vector <char> jenis_kelamin = {'L','L','P'};
+    vector <string> penyakit = {"Alergi makanan","Stroke","Kelahiran"};
+
+    Pasien data_pasien_bulan_mei("Awal Bros","Jalan Gajah Mada",nama_pasien,umur_pasien,jenis_kelamin,penyakit);
+    data_pasien_bulan_mei.input_data_pasien(data_pasien_bulan_mei);
+    data_pasien_bulan_mei.Find_data_pasien("Bagas");
+    data_pasien_bulan_mei.Find_data_pasien("Danu");
+    data_pasien_bulan_mei.Rawat_inap("Tania");
+    data_pasien_bulan_mei.Rawat_inap("Danu");
+
+    
+
 
     return 0;
 }
