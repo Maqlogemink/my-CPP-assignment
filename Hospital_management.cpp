@@ -1,11 +1,4 @@
-
-
-// Online C++ compiler to run C++ program online
-#include <iostream>
-#include <vector> 
-#include <algorithm> 
-#include <string>
-#include <cstring>
+# include <bits/stdc++.h>
 using namespace std;
 
 class Rumah_Sakit{
@@ -52,8 +45,8 @@ public:
 
     }
 
-     vector <string> get_nama_karyawan() const
-     {
+    vector <string> get_nama_karyawan() const
+    {
         return Nama_karyawan;
     }
     
@@ -135,7 +128,7 @@ class Pasien : public Rumah_Sakit{
         : Rumah_Sakit(_nama,_alamat), Nama_Pasien(nama), Umur_Pasien(umur), Jenis_Kelamin(gender), Riwayat_Medis(riwayat)
         {
 
-           
+     
 
         }
 
@@ -145,9 +138,26 @@ class Pasien : public Rumah_Sakit{
         vector <unsigned int> get_umur_pasien() const{
             return Umur_Pasien;
         }
-        vector <char> get_gender_pasien() const{
-            return Jenis_Kelamin;
+
+        string get_gender_pasien() const{
+            string results;
+            vector <string> convert(Jenis_Kelamin.size());
+            copy(Jenis_Kelamin.begin(),Jenis_Kelamin.end(),convert.end());
+            for(vector <string>:: iterator it = convert.begin(); it != convert.end(); ++it){
+                if(*it == "L" || *it =="l"){
+                    results = "Laki laki";
+                }
+                if(*it == "P" || *it =="p"){
+                    results = "Perempuan";
+                }
+                else{
+                    results = "Invalid";
+                }
+            }
+
+            return results;
         }
+
         vector <string> get_riwayat_pasien() const{
             return Riwayat_Medis;
         }
@@ -167,7 +177,7 @@ class Pasien : public Rumah_Sakit{
             << " \n Berada dirumah sakit : " << Nama_rumah_sakit
             << " \n Berumur :" << Umur_Pasien.at(indeks) 
             <<"\n Riwayat Medis : "<< Riwayat_Medis.at(indeks) 
-            <<"\n Jenis Kelamin : "<< Jenis_Kelamin.at(indeks) << endl;
+            <<"\n Jenis Kelamin : "<< get_gender_pasien() << endl;
             }
         }
 
@@ -219,6 +229,7 @@ int main(){
     data_pasien_bulan_mei.input_data_pasien(data_pasien_bulan_mei);
     data_pasien_bulan_mei.Find_data_pasien("Bagas");
     data_pasien_bulan_mei.Find_data_pasien("Danu");
+    data_pasien_bulan_mei.Find_data_pasien("Tania");
     data_pasien_bulan_mei.Rawat_inap("Tania");
     data_pasien_bulan_mei.Rawat_inap("Danu");
 

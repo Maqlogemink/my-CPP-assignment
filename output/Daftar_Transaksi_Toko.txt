@@ -1,0 +1,12 @@
+=================================
+Nama Barang : 
+Jumlah Barang : 8.45352e-307
+Harga Barang : 1.79648e-313
+Total Harga : 0
+=================================
+=================================
+Nama Barang : cd 'd:\C++\output'
+Jumlah Barang : 2.07584e-317
+Harga Barang : 0
+Total Harga : 0
+=================================
